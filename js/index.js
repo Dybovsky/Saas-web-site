@@ -36,19 +36,39 @@ function displayItem(data) {
   const newLi = document.createElement("li");
   const item = document.createElement("a");
   newLi.style.listStyle = "none";
-  item.innerText = `${data.name} (${data.symbol})`;
+  item.innerText = `  ${data.name} (${data.symbol})`;
   item.setAttribute("href", `./company.html?symbol=${data.symbol}`);
   item.setAttribute("class", "list-group-item list-group-item-action");
   resultsList.appendChild(newLi);
   newLi.appendChild(item);
+  //
+  let profileUrl = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${data.symbol}`;
+  fetch(profileUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      const perc = document.createElement("span");
+      const logo = document.createElement("img");
+      logo.src = data.profile.image;
+      //logo.style.width = "30px";
+      logo.style.height = "30px";
+      const companyChanges = data.profile.changesPercentage;
+      perc.innerText = `${companyChanges}`;
+      item.prepend(logo);
+      item.append(perc);
+      if (companyChanges.includes("-")) {
+        perc.style.color = "red";
+      } else {
+        perc.style.color = "green";
+      }
+    });
 }
 
 searchBtn.addEventListener("click", displaySearch);
-// search.addEventListener("keydown", (event) => {
-//   if (event.keyCode == 13) {
-//     displaySearch;
-//   }
-// });
+search.addEventListener("keydown", (event) => {
+  if (event.keyCode == 13) {
+    displaySearch();
+  }
+});
 
 // fetch(
 //     "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ"
