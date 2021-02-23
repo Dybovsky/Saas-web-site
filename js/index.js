@@ -1,4 +1,5 @@
 let searchBtn = document.getElementById("button-addon2");
+
 let search = document.getElementById("search");
 let url = "";
 
@@ -36,13 +37,18 @@ function displayItem(data) {
   const item = document.createElement("a");
   newLi.style.listStyle = "none";
   item.innerText = `${data.name} (${data.symbol})`;
-  item.setAttribute("href", `/company.html?symbol=${data.symbol}`);
+  item.setAttribute("href", `./company.html?symbol=${data.symbol}`);
   item.setAttribute("class", "list-group-item list-group-item-action");
   resultsList.appendChild(newLi);
   newLi.appendChild(item);
 }
 
 searchBtn.addEventListener("click", displaySearch);
+// search.addEventListener("keydown", (event) => {
+//   if (event.keyCode == 13) {
+//     displaySearch;
+//   }
+// });
 
 // fetch(
 //     "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ"
