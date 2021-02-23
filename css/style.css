@@ -1,7 +1,16 @@
+body {
+  background-color: #4c1f7c;
+}
+
 .wrapper1 {
   padding: 20px;
 }
 
 #spinner {
   display: none;
+}
+
+.btn {
+  color: #black;
+  background-color: #ccc4f7;
 }
