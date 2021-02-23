@@ -29,10 +29,10 @@ function showCompanyProfile(data) {
   const companyChanges = data.profile.changesPercentage;
   comName.textContent = companyName;
   comImg.src = companyImg;
-  comDescr.textContent = companyDescr;
+  comDescr.textContent += companyDescr;
   comLink.href = companyLink;
   comPrice.innerText += companyPrice;
-  comChanges.innerText = companyChanges;
+  comChanges.innerText += companyChanges;
   if (companyChanges.includes("-")) {
     comChanges.style.color = "red";
   }
@@ -63,6 +63,7 @@ getPriceHistory();
 getCompanyPage();
 
 function drawGraph(mydata) {
+  Chart.defaults.global.defaultFontColor = "black";
   let days = [];
   let price = [];
   for (let i = 0; i < mydata.historical.length; i++) {
@@ -81,8 +82,8 @@ function drawGraph(mydata) {
       datasets: [
         {
           label: "Stock price",
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "#4c1f7c",
+          borderColor: "#4c1f7c",
           data: price,
           pointRadius: 1,
         },
