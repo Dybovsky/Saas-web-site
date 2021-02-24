@@ -5,7 +5,7 @@ let url = "";
 
 let resultsList = document.getElementById("resultsList");
 
-let marquee = document.getElementById("marquee");
+let marquee = document.querySelector(".marquee");
 function displaySpinner(name) {
   name.style.display = "block";
 }
@@ -64,33 +64,33 @@ function displayItem(data) {
     });
 }
 
-async function showMarquee() {
-  url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/stock/actives`;
-  const response = await fetch(url);
-  const data = await response.json();
-  for (let i = 0; i < data.mostActiveStock.length; i++) {
-    // console.log(data.mostActiveStock[i]);
-    addItemToMar(data.mostActiveStock[i]);
-  }
-}
+// async function showMarquee() {
+//   url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/stock/actives`;
+//   const response = await fetch(url);
+//   const data = await response.json();
+//   for (let i = 0; i < data.mostActiveStock.length; i++) {
+//     // console.log(data.mostActiveStock[i]);
+//     addItemToMar(data.mostActiveStock[i]);
+//   }
+// }
 
-function addItemToMar(item) {
-  const marSymb = document.createElement("span");
-  const marPerc = document.createElement("span");
-  marquee.style.background = "white";
-  marSymb.style.color = "black";
-  if (item.changesPercentage.includes("-")) {
-    marPerc.style.color = "red";
-  } else {
-    marPerc.style.color = "green";
-  }
+// function addItemToMar(item) {
+//   const marSymb = document.createElement("span");
+//   const marPerc = document.createElement("span");
+//   marquee.style.background = "white";
+//   marSymb.style.color = "black";
+//   if (item.changesPercentage.includes("-")) {
+//     marPerc.style.color = "red";
+//   } else {
+//     marPerc.style.color = "green";
+//   }
 
-  marSymb.innerText = `|  ${item.ticker}:`;
-  marPerc.innerText = `${item.changesPercentage} `;
-  marquee.appendChild(marSymb);
-  marquee.appendChild(marPerc);
-}
-showMarquee();
+//   marSymb.innerText = `|  ${item.ticker}:`;
+//   marPerc.innerText = `${item.changesPercentage} `;
+//   marquee.appendChild(marSymb);
+//   marquee.appendChild(marPerc);
+// }
+// showMarquee();
 
 searchBtn.addEventListener("click", displaySearch);
 search.addEventListener("keydown", (event) => {
@@ -98,6 +98,10 @@ search.addEventListener("keydown", (event) => {
     displaySearch();
   }
 });
+
+const myMarquee = new Marquee(marquee);
+myMarquee.createMarquee();
+myMarquee.showMarquee();
 
 // fetch(
 //     "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ"
