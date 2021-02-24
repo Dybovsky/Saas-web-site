@@ -14,3 +14,36 @@ body {
   color: #black;
   background-color: #ccc4f7;
 }
+
+/* .marquee */
+.marquee {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.marquee h3 {
+  color: lightgreen;
+  font-size: 25px;
+  display: inline-block;
+  padding-left: 100%;
+  -webkit-animation: marquee 50s infinite linear;
+  animation: marquee 50s infinite linear;
+}
+
+@-webkit-keyframes marquee {
+  0% {
+    -webkit-transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(-100%, 0);
+  }
+}
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
