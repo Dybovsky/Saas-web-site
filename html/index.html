@@ -55,11 +55,11 @@
         const results = new SearchResults(
           document.getElementById("resultsList")
         );
-        results.displaySearch();
-        //results.hideSpinner();
-        // results.createSpinner();
-        // results.displaySearch();
-        //results.makeSearch();
+
+        let btn = document.getElementById("button-addon2");
+        btn.addEventListener("click", () => {
+          results.displaySearch();
+        });
       })();
     </script>
   </body>

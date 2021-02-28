@@ -77,4 +77,7 @@ class SearchResults {
         }
       });
   }
+
+  //   let btn = document.getElementById('button-addon2');
+  //   btn..addEventListener("click", this.displaySearch);
 }
