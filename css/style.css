@@ -16,13 +16,13 @@ body {
 }
 
 /* .marquee */
-.marquee {
+#marquee {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.marquee h3 {
+#marquee h3 {
   color: lightgreen;
   font-size: 25px;
   display: inline-block;
