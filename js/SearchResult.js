@@ -3,55 +3,25 @@ class SearchResults {
     this.element = element;
   }
 
-  createSpinner() {
-    const spinner = document.createElement("div");
-    spinner.id = "spinner";
-    spinner.classList.add("spinner-border", "text-success");
-    spinner.role = "status";
-    this.element.appendChild(spinner);
-    //
-    const span = document.createElement("span");
-    span.classList.add("visually-hidden");
-    spinner.appendChild(span);
-  }
+  async displaySearch(searchResults) {
+    // let spinner = document.getElementById("spinner");
 
-  displaySpinner() {
-    let spinner = document.getElementById("spinner");
-    spinner.style.display = "block";
-  }
-
-  hideSpinner() {
-    let spinner = document.getElementById("spinner");
-    spinner.style.display = "none";
-  }
-
-  async makeSearch() {
-    //this.displaySpinner();
-    const searchTerm = document.getElementById("search").value;
-    const url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${searchTerm}&limit=10&exchange=NASDAQ`;
-    const response = await fetch(url);
-    const data = await response.json();
-    // console.log(data);
-    return data;
-  }
-
-  async displaySearch() {
     const resultsList = document.getElementById("resultsList");
     resultsList.textContent = "";
-    let searchResults = await this.makeSearch(); // handle errors;
+
+    // const searchResults = await this.makeSearch(); // handle errors;
     //   console.log(searchResults[0].name);
     for (let item of searchResults) {
       this.displayItem(item);
-      //console.log(111111111);
     }
-    //hideSpinner();
   }
+
   displayItem(data) {
     const resultsList = document.getElementById("resultsList");
     const newLi = document.createElement("li");
     const item = document.createElement("a");
     newLi.style.listStyle = "none";
-    item.innerText = `  ${data.name} (${data.symbol})`;
+    item.innerText = `  ${data.name} (${data.symbol})`; //var
     item.setAttribute("href", `./company.html?symbol=${data.symbol}`);
     item.setAttribute("class", "list-group-item list-group-item-action");
     resultsList.appendChild(newLi);

@@ -47,19 +47,27 @@
     <script>
       (async function () {
         const marquee = new Marquee(document.getElementById("marquee"));
-        marquee.createMarquee();
         marquee.showMarquee();
         //
         const form = new SearchForm(document.getElementById("form"));
-        form.createSearchForm();
+
         const results = new SearchResults(
           document.getElementById("resultsList")
         );
 
-        let btn = document.getElementById("button-addon2");
-        btn.addEventListener("click", () => {
-          results.displaySearch();
-        });
+        form.onSearch((result) => results.displaySearch(result));
+
+        // let btn = document.getElementById("button-addon2");
+        // btn.addEventListener("click", () => {
+        //   results.displaySearch();
+        // });
+
+        // let search = document.getElementById("search");
+        // search.addEventListener("keydown", (event) => {
+        //   if (event.keyCode == 13) {
+        //     results.displaySearch();
+        //   }
+        // });
       })();
     </script>
   </body>

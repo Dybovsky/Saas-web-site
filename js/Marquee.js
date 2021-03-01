@@ -2,6 +2,7 @@ class Marquee {
   constructor(element) {
     this.element = element;
     this.url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/stock/actives`;
+    this.createMarquee();
   }
   createMarquee() {
     let h3 = document.createElement("h3");
