@@ -3,17 +3,28 @@ class SearchResults {
     this.element = element;
   }
 
-  async displaySearch(searchResults) {
-    // let spinner = document.getElementById("spinner");
-
+  async displaySearch() {
+    let spin = document.getElementById("spinner");
+    spin.classList.remove("d-none");
     const resultsList = document.getElementById("resultsList");
     resultsList.textContent = "";
-
-    // const searchResults = await this.makeSearch(); // handle errors;
+    let searchResults = await this.makeSearch(); // handle errors;
     //   console.log(searchResults[0].name);
     for (let item of searchResults) {
       this.displayItem(item);
+      //console.log(111111111);
     }
+    spin.classList.add("d-none");
+  }
+
+  async makeSearch() {
+    //this.displaySpinner();
+    const searchTerm = document.getElementById("search").value;
+    const url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${searchTerm}&limit=10&exchange=NASDAQ`;
+    const response = await fetch(url);
+    const data = await response.json();
+    // console.log(data);
+    return data;
   }
 
   displayItem(data) {
@@ -21,7 +32,12 @@ class SearchResults {
     const newLi = document.createElement("li");
     const item = document.createElement("a");
     newLi.style.listStyle = "none";
-    item.innerText = `  ${data.name} (${data.symbol})`; //var
+    let res = `  ${data.name} (${data.symbol})`;
+    let term = document.getElementById("search").value;
+    item.innerHTML = res.replace(
+      new RegExp(term, "gi"),
+      (match) => `<mark>${match}</mark>`
+    );
     item.setAttribute("href", `./company.html?symbol=${data.symbol}`);
     item.setAttribute("class", "list-group-item list-group-item-action");
     resultsList.appendChild(newLi);
@@ -47,7 +63,4 @@ class SearchResults {
         }
       });
   }
-
-  //   let btn = document.getElementById('button-addon2');
-  //   btn..addEventListener("click", this.displaySearch);
 }

@@ -47,3 +47,7 @@ body {
     transform: translate(-100%, 0);
   }
 }
+
+mark {
+  background-color: yellowgreen;
+}
